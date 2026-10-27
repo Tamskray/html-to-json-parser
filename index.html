@@ -1,0 +1,118 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML to JSON</title>
+    <script src="html2json.js" defer></script>
+    <script src="app.js" defer></script>
+    <style>
+      h1 {
+        font-family: sans-serif;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+      }
+
+      textarea {
+        width: 100%;
+        height: calc(100vh - 170px);
+        max-width: 100%;
+        white-space: pre;
+      }
+
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      button,
+      select {
+        padding: 8px 14px;
+        height: 40px;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        background-color: #f0f0f0;
+      }
+
+      button:hover {
+        background-color: #e4e4e4;
+      }
+
+      select {
+        min-width: 280px;
+        background-color: #fff;
+      }
+
+      .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: sans-serif;
+        font-size: 14px;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .checkbox-label input {
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Jito's Software Developer Intern "html2json" Test Task</h1>
+
+    <div class="container">
+      <div class="field">
+        <label for="html">Input for "html2json" conversion:</label>
+        <textarea id="html" placeholder="Enter your HTML"></textarea>
+      </div>
+      <div class="field">
+        <label for="json">Results of "html2json" conversion:</label>
+        <textarea
+          disabled
+          id="json"
+          placeholder="Here will be output from your html2json function"
+        ></textarea>
+      </div>
+    </div>
+    <div class="buttons">
+      <button onclick="convertHtml2JsonAndSet()">Convert to JSON</button>
+      <select id="exampleSelect" onchange="loadSelectedExample(this.value)">
+        <option value="" disabled selected>Select an input example...</option>
+        <!-- Options are populated dynamically by app.js -->
+      </select>
+      <label class="checkbox-label">
+        <input type="checkbox" id="includeScripts" checked onchange="convertHtml2JsonAndSet()" />
+        Include &lt;script&gt;
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="includeStyles" checked onchange="convertHtml2JsonAndSet()" />
+        Include &lt;style&gt;
+      </label>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!-- Implicit Closing Tags — all examples below are valid HTML per specification -->
+
+<h3>Lists without closing &lt;/li&gt;</h3>
+<ul>
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item</li>
+</ul>
+
+<h3>Nested lists</h3>
+<ol>
+  <li>
+    Parent item 1
+    <ul>
+      <li>Child A</li>
+      <li>Child B</li>
+    </ul>
+  </li>
+
+  <li>Parent item 2</li>
+</ol>
+
+<h3>Paragraphs auto-closed by block elements</h3>
+<div>
+  <p>This paragraph is auto-closed by the next one.</p>
+  <p>Second paragraph auto-closed by a heading.</p>
+  <h4>Heading closes the paragraph above</h4>
+  <p>Final paragraph.</p>
+</div>
+
+<h3>Table without closing &lt;/td&gt;, &lt;/tr&gt;</h3>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Alice</td>
+      <td>
+        30
+        <tr>
+          <td>Bob</td>
+          <td>25</td>
+        </tr>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Definition list</h3>
+<dl>
+  <dt>HTML</dt>
+  <dd>HyperText Markup Language</dd>
+  <dt>CSS</dt>
+  <dd>Cascading Style Sheets</dd>
+  <dt>JS</dt>
+  <dd>JavaScript</dd>
+</dl>
+
+<h3>Select with &lt;option&gt; auto-closing</h3>
+<select>
+  <option value="a">Alpha</option>
+  <option value="b" selected>Beta</option>
+  <option value="c">Gamma</option>
+</select>

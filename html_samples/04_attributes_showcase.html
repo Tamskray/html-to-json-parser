@@ -1,0 +1,20 @@
+<div id="main-card" class="card shadow-lg" data-test="container">
+  <h2 title='Special "Quote" Title'>User Registration</h2>
+  <form action="/submit" method="post">
+    <label for="username">Username:</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      placeholder="Enter score > 50"
+      required
+      autofocus
+    />
+
+    <label for="agree">Agree to Terms:</label>
+    <input type="checkbox" id="agree" name="agree" checked disabled />
+
+    <button type="submit" class="btn btn-primary" data-action="save">Submit</button>
+  </form>
+  <img src="avatar.jpg" alt="User Profile" width="150" height="150" />
+</div>

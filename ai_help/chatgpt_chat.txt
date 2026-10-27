@@ -1,0 +1,4 @@
+Here is my first research with Gemini. In this conversation, I basically checked how
+I can build an HTML to JSON parser, so I could understand in which direction I should move forward.
+
+Link - https://gemini.google.com/share/954ed61560ca?social_preview=false&skid=ebba5468-2197-4065-aa74-8ffe1528abd2

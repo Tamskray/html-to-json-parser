@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      /* CSS child selectors and attribute selectors */
+      body > .container {
+        margin: 0 auto;
+        max-width: 800px;
+      }
+      a[href^="https"] {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Raw Text Containers: Script &amp; Style</h1>
+      <p>Script code and CSS selectors are safely preserved as raw text.</p>
+    </div>
+
+    <script src="analytics.js" defer async></script>
+    <script>
+      // Comparison operators and HTML strings inside JS
+      const threshold = 100;
+      for (let i = 0; i < threshold; i++) {
+        if (i < 50 && i > 10) {
+          console.log("<div class='item'>Active: " + i + "</div>");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechBlog &mdash; Latest Articles</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="description" content="A sample large HTML document for parser testing" />
+    <meta property="og:title" content="TechBlog" />
+    <meta property="og:type" content="website" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      header {
+        background: #1a1a2e;
+        color: #fff;
+        padding: 16px 0;
+      }
+      nav a {
+        color: #e0e0e0;
+        text-decoration: none;
+        margin-right: 20px;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
+      .hero {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+        padding: 60px 0;
+        text-align: center;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+        padding: 40px 0;
+      }
+      article {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+      }
+      aside {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      footer {
+        background: #1a1a2e;
+        color: #aaa;
+        padding: 30px 0;
+        text-align: center;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        padding: 10px 14px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+      th {
+        background: #f0f0f0;
+      }
+      .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+      }
+      .badge-new {
+        background: #28a745;
+        color: #fff;
+      }
+      .badge-popular {
+        background: #ffc107;
+        color: #333;
+      }
+      form input,
+      form textarea,
+      form select {
+        display: block;
+        width: 100%;
+        margin: 8px 0 16px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      form button {
+        background: #667eea;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== Header & Navigation ========== -->
+    <header>
+      <div class="container">
+        <nav>
+          <a href="/">Home</a>
+          <a href="/articles">Articles</a>
+          <a href="/tutorials">Tutorials</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ========== Hero Section ========== -->
+    <section class="hero">
+      <div class="container">
+        <h1>TechBlog &mdash; Web Development Insights</h1>
+        <p>Stay up to date with the latest trends in HTML, CSS, and JavaScript.</p>
+        <br />
+        <a href="#articles" style="color: #fff; text-decoration: underline"
+          >Browse Articles &darr;</a
+        >
+      </div>
+    </section>
+
+    <!-- ========== Main Content ========== -->
+    <div class="container">
+      <div class="grid">
+        <main id="articles">
+          <!-- Article 1 -->
+          <article>
+            <h2>Understanding Semantic HTML</h2>
+            <p><span class="badge badge-popular">Popular</span></p>
+            <p>
+              Published on <time datetime="2024-10-15">October 15, 2024</time> by
+              <strong>Jane Smith</strong>
+            </p>
+            <p>
+              Semantic HTML uses elements like <code>&lt;article&gt;</code>,
+              <code>&lt;section&gt;</code>, <code>&lt;nav&gt;</code>, and
+              <code>&lt;aside&gt;</code> to give meaning to the structure of a webpage. This
+              improves <em>accessibility</em>, <em>SEO</em>, and overall code readability.
+            </p>
+            <blockquote>
+              <p>
+                &ldquo;The goal of HTML is not just to display content, but to describe it.&rdquo;
+              </p>
+            </blockquote>
+            <p>Key semantic elements include:</p>
+            <ul>
+              <li><code>&lt;header&gt;</code> &mdash; Page or section header</li>
+              <li><code>&lt;main&gt;</code> &mdash; Primary content area</li>
+              <li><code>&lt;footer&gt;</code> &mdash; Page or section footer</li>
+              <li>
+                <code>&lt;figure&gt;</code> &amp; <code>&lt;figcaption&gt;</code> &mdash;
+                Illustrations with captions
+              </li>
+            </ul>
+            <figure>
+              <img
+                src="semantic-html.png"
+                alt="Diagram showing semantic HTML layout"
+                width="600"
+                height="400"
+              />
+              <figcaption>Figure 1: A typical semantic HTML page structure.</figcaption>
+            </figure>
+            <p><a href="/articles/semantic-html">Read full article &rarr;</a></p>
+          </article>
+
+          <!-- Article 2 -->
+          <article>
+            <h2>CSS Grid vs Flexbox: When to Use Which</h2>
+            <p><span class="badge badge-new">New</span></p>
+            <p>
+              Published on <time datetime="2024-10-20">October 20, 2024</time> by
+              <strong>John Doe</strong>
+            </p>
+            <p>
+              Both CSS Grid and Flexbox are powerful layout systems, but they solve different
+              problems. Grid is for <strong>two-dimensional</strong> layouts (rows &amp; columns),
+              while Flexbox excels at <strong>one-dimensional</strong> layouts (a single row or
+              column).
+            </p>
+            <h3>Comparison Table</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>CSS Grid</th>
+                  <th>Flexbox</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Dimensions</td>
+                  <td>2D (rows &amp; columns)</td>
+                  <td>1D (row <em>or</em> column)</td>
+                </tr>
+                <tr>
+                  <td>Content-first vs Layout-first</td>
+                  <td>Layout-first</td>
+                  <td>Content-first</td>
+                </tr>
+                <tr>
+                  <td>Overlap support</td>
+                  <td>Yes (grid areas can overlap)</td>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <td>Browser support</td>
+                  <td>&gt; 97%</td>
+                  <td>&gt; 99%</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              <strong>Pro tip:</strong> You can combine Grid and Flexbox &mdash; use Grid for the
+              overall page layout and Flexbox for component-level alignment.
+            </p>
+            <p><a href="/articles/grid-vs-flexbox">Read full article &rarr;</a></p>
+          </article>
+
+          <!-- Article 3 -->
+          <article>
+            <h2>JavaScript Performance Tips for 2025</h2>
+            <p>
+              Published on <time datetime="2024-11-01">November 1, 2024</time> by
+              <strong>Emily Chen</strong>
+            </p>
+            <p>
+              Optimizing JavaScript can significantly improve your web application&rsquo;s
+              responsiveness.
+            </p>
+            <h3>Top 5 Tips</h3>
+            <ol>
+              <li>
+                <strong>Debounce expensive event handlers</strong>
+                <p>
+                  Use <code>requestAnimationFrame</code> or a debounce utility for scroll and resize
+                  events.
+                </p>
+              </li>
+              <li>
+                <strong>Lazy-load images and scripts</strong>
+                <p>
+                  Use <code>loading=&quot;lazy&quot;</code> for images and <code>defer</code>/<code
+                    >async</code
+                  >
+                  for scripts.
+                </p>
+              </li>
+              <li>
+                <strong>Minimize DOM access</strong>
+                <p>Cache DOM references and batch reads/writes to avoid layout thrashing.</p>
+              </li>
+              <li>
+                <strong>Use Web Workers for heavy computation</strong>
+                <p>Offload CPU-intensive tasks to a separate thread.</p>
+              </li>
+              <li>
+                <strong>Profile with DevTools</strong>
+                <p>Use Chrome DevTools Performance tab to find and fix bottlenecks.</p>
+              </li>
+            </ol>
+            <p><a href="/articles/js-performance-2025">Read full article &rarr;</a></p>
+          </article>
+        </main>
+
+        <!-- Sidebar -->
+        <aside>
+          <h3>About the Blog</h3>
+          <p>TechBlog covers web development topics for beginners and professionals alike.</p>
+          <hr />
+
+          <h3>Newsletter</h3>
+          <form action="/subscribe" method="post">
+            <label for="email">Email address:</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            <label for="frequency">Frequency:</label>
+            <select id="frequency" name="frequency">
+              <option value="daily">Daily digest</option>
+              <option value="weekly" selected>Weekly roundup</option>
+              <option value="monthly">Monthly summary</option>
+            </select>
+            <label>
+              <input type="checkbox" name="terms" checked /> I agree to the
+              <a href="/terms">terms</a>
+            </label>
+            <button type="submit">Subscribe</button>
+          </form>
+          <hr />
+
+          <h3>Tags</h3>
+          <ul>
+            <li><a href="/tags/html">HTML</a></li>
+            <li><a href="/tags/css">CSS</a></li>
+            <li><a href="/tags/javascript">JavaScript</a></li>
+            <li><a href="/tags/accessibility">Accessibility</a></li>
+            <li><a href="/tags/performance">Performance</a></li>
+            <li><a href="/tags/react">React</a></li>
+            <li><a href="/tags/nodejs">Node.js</a></li>
+          </ul>
+          <hr />
+
+          <h3>Archives</h3>
+          <details>
+            <summary>2024</summary>
+            <ul>
+              <li><a href="/archive/2024/11">November</a></li>
+              <li><a href="/archive/2024/10">October</a></li>
+              <li><a href="/archive/2024/09">September</a></li>
+            </ul>
+          </details>
+          <details>
+            <summary>2023</summary>
+            <ul>
+              <li><a href="/archive/2023/12">December</a></li>
+              <li><a href="/archive/2023/11">November</a></li>
+            </ul>
+          </details>
+        </aside>
+      </div>
+    </div>
+
+    <!-- ========== Footer ========== -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 TechBlog. Built with &hearts; and semantic HTML.</p>
+        <p>
+          <a href="/privacy" style="color: #aaa">Privacy Policy</a> &bull;
+          <a href="/terms" style="color: #aaa">Terms of Service</a> &bull;
+          <a href="/sitemap.xml" style="color: #aaa">Sitemap</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="analytics.js" defer></script>
+  </body>
+</html>

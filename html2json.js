@@ -27,85 +27,91 @@ const SELF_CLOSING_TAGS = [
 ];
 
 // Elements that are implicitly closed when specific other tags open
-const AUTO_CLOSE_MAP = {
-  p: [
-    "p",
-    "div",
-    "section",
-    "article",
-    "aside",
-    "nav",
-    "header",
-    "footer",
-    "h1",
-    "h2",
-    "h3",
-    "h4",
-    "h5",
-    "h6",
-    "ul",
-    "ol",
-    "table",
-    "form",
-    "blockquote",
-    "pre",
-    "hr",
-    "address",
-    "fieldset",
-    "figure",
-    "main",
-    "details",
-    "dl",
-    "hgroup",
-    "search",
-  ],
-  li: ["li"],
-  td: ["td", "th", "tr", "thead", "tbody", "tfoot"],
-  th: ["td", "th", "tr", "thead", "tbody", "tfoot"],
-  tr: ["tr", "thead", "tbody", "tfoot"],
-  dd: ["dd", "dt"],
-  dt: ["dd", "dt"],
-  thead: ["tbody", "tfoot"],
-  tbody: ["tbody", "tfoot"],
-  tfoot: ["tbody"],
-  option: ["option", "optgroup"],
-  optgroup: ["optgroup"],
-  colgroup: ["colgroup", "thead", "tbody", "tfoot", "tr"],
-  rt: ["rt", "rp"],
-  rp: ["rt", "rp"],
-};
+const AUTO_CLOSE_MAP = new Map(
+  Object.entries({
+    p: [
+      "p",
+      "div",
+      "section",
+      "article",
+      "aside",
+      "nav",
+      "header",
+      "footer",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "ul",
+      "ol",
+      "table",
+      "form",
+      "blockquote",
+      "pre",
+      "hr",
+      "address",
+      "fieldset",
+      "figure",
+      "main",
+      "details",
+      "dl",
+      "hgroup",
+      "search",
+    ],
+    li: ["li"],
+    td: ["td", "th", "tr", "thead", "tbody", "tfoot"],
+    th: ["td", "th", "tr", "thead", "tbody", "tfoot"],
+    tr: ["tr", "thead", "tbody", "tfoot"],
+    dd: ["dd", "dt"],
+    dt: ["dd", "dt"],
+    thead: ["tbody", "tfoot"],
+    tbody: ["tbody", "tfoot"],
+    tfoot: ["tbody"],
+    option: ["option", "optgroup"],
+    optgroup: ["optgroup"],
+    colgroup: ["colgroup", "thead", "tbody", "tfoot", "tr"],
+    rt: ["rt", "rp"],
+    rp: ["rt", "rp"],
+  }),
+);
 
-const NAMED_ENTITIES = {
-  amp: "&",
-  lt: "<",
-  gt: ">",
-  quot: '"',
-  apos: "'",
-  nbsp: "\u00A0",
-  copy: "\u00A9",
-  reg: "\u00AE",
-  trade: "\u2122",
-  mdash: "\u2014",
-  ndash: "\u2013",
-  hellip: "\u2026",
-  laquo: "\u00AB",
-  raquo: "\u00BB",
-  bull: "\u2022",
-  middot: "\u00B7",
-  lsquo: "\u2018",
-  rsquo: "\u2019",
-  ldquo: "\u201C",
-  rdquo: "\u201D",
-  euro: "\u20AC",
-  pound: "\u00A3",
-  yen: "\u00A5",
-  cent: "\u00A2",
-  times: "\u00D7",
-  divide: "\u00F7",
-  plusmn: "\u00B1",
-  deg: "\u00B0",
-  micro: "\u00B5",
-};
+const NAMED_ENTITIES = new Map(
+  Object.entries({
+    amp: "&",
+    lt: "<",
+    gt: ">",
+    quot: '"',
+    apos: "'",
+    nbsp: "\u00A0",
+    copy: "\u00A9",
+    reg: "\u00AE",
+    trade: "\u2122",
+    mdash: "\u2014",
+    ndash: "\u2013",
+    hellip: "\u2026",
+    laquo: "\u00AB",
+    raquo: "\u00BB",
+    bull: "\u2022",
+    middot: "\u00B7",
+    lsquo: "\u2018",
+    rsquo: "\u2019",
+    ldquo: "\u201C",
+    rdquo: "\u201D",
+    euro: "\u20AC",
+    pound: "\u00A3",
+    yen: "\u00A5",
+    cent: "\u00A2",
+    times: "\u00D7",
+    divide: "\u00F7",
+    plusmn: "\u00B1",
+    deg: "\u00B0",
+    micro: "\u00B5",
+  }),
+);
+
+const MAX_CODE_POINT = 0x10ffff;
 
 function decodeHtmlEntities(text) {
   if (text.indexOf("&") === -1) return text;
@@ -117,9 +123,9 @@ function decodeHtmlEntities(text) {
     }
     if (entity.startsWith("#")) {
       const code = parseInt(entity.slice(1), 10);
-      return code ? String.fromCodePoint(code) : match;
+      return code > 0 && code <= MAX_CODE_POINT ? String.fromCodePoint(code) : match;
     }
-    return NAMED_ENTITIES[entity] || match;
+    return NAMED_ENTITIES.get(entity) ?? match;
   });
 }
 
@@ -150,8 +156,10 @@ function findNextOpenTagIndex(htmlText, fromIndex) {
 
 function findTagCloseIndex(htmlText, fromIndex) {
   let inQuote = null;
+
   for (let i = fromIndex; i < htmlText.length; i++) {
     const char = htmlText[i];
+
     if (inQuote) {
       if (char === inQuote) {
         inQuote = null;
@@ -164,6 +172,7 @@ function findTagCloseIndex(htmlText, fromIndex) {
       }
     }
   }
+
   return -1;
 }
 
@@ -433,7 +442,7 @@ function html2json(htmlText, options = {}) {
       // Auto-close preceding tags if current tag implicitly closes them
       while (stack.length > 1) {
         const topTag = stack[stack.length - 1].tag;
-        const closedBy = AUTO_CLOSE_MAP[topTag];
+        const closedBy = AUTO_CLOSE_MAP.get(topTag);
         if (closedBy && closedBy.includes(tagName)) {
           stack.pop();
         } else {

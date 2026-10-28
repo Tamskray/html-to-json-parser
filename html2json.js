@@ -119,7 +119,7 @@ function decodeHtmlEntities(text) {
   return text.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (match, entity) => {
     if (entity.startsWith("#x") || entity.startsWith("#X")) {
       const code = parseInt(entity.slice(2), 16);
-      return code ? String.fromCodePoint(code) : match;
+      return code > 0 && code <= MAX_CODE_POINT ? String.fromCodePoint(code) : match;
     }
     if (entity.startsWith("#")) {
       const code = parseInt(entity.slice(1), 10);

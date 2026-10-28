@@ -342,9 +342,11 @@ function html2json(htmlText, options = {}) {
     if (openTagIndex === -1) {
       const remainingRaw = htmlText.substring(cursor);
       const textNode = processTextContent(remainingRaw, currentParent, true);
+
       if (textNode) {
         currentParent.children.push({ type: "text", content: textNode });
       }
+
       break;
     }
 
@@ -352,6 +354,7 @@ function html2json(htmlText, options = {}) {
       const textRaw = htmlText.substring(cursor, openTagIndex);
       const isNextClosing = htmlText.startsWith(CLOSING_TAG_PREFIX, openTagIndex);
       const textNode = processTextContent(textRaw, currentParent, isNextClosing);
+
       if (textNode) {
         currentParent.children.push({ type: "text", content: textNode });
       }
@@ -362,7 +365,9 @@ function html2json(htmlText, options = {}) {
     // Comments (<!-- ... -->)
     if (htmlText.startsWith(COMMENT_START, cursor)) {
       const commentEndIndex = htmlText.indexOf(COMMENT_END, cursor + COMMENT_START.length);
+
       if (commentEndIndex === -1) break;
+
       cursor = commentEndIndex + COMMENT_END.length;
       continue;
     }
@@ -370,7 +375,9 @@ function html2json(htmlText, options = {}) {
     // DOCTYPE (<!DOCTYPE ...>)
     if (htmlText.startsWith(DOCTYPE_PREFIX, cursor)) {
       const doctypeEndIndex = htmlText.indexOf(TAG_CLOSE, cursor + DOCTYPE_PREFIX.length);
+
       if (doctypeEndIndex === -1) break;
+
       cursor = doctypeEndIndex + TAG_CLOSE.length;
       continue;
     }
@@ -378,6 +385,7 @@ function html2json(htmlText, options = {}) {
     // Closing tags (</tag>)
     if (htmlText.startsWith(CLOSING_TAG_PREFIX, cursor)) {
       const closeTagIndex = htmlText.indexOf(TAG_CLOSE, cursor + CLOSING_TAG_PREFIX.length);
+
       if (closeTagIndex === -1) {
         cursor += CLOSING_TAG_PREFIX.length;
         continue;
@@ -443,6 +451,7 @@ function html2json(htmlText, options = {}) {
       while (stack.length > 1) {
         const topTag = stack[stack.length - 1].tag;
         const closedBy = AUTO_CLOSE_MAP.get(topTag);
+
         if (closedBy && closedBy.includes(tagName)) {
           stack.pop();
         } else {
@@ -459,6 +468,7 @@ function html2json(htmlText, options = {}) {
 
         if (!containerEnd) {
           const rawContent = htmlText.substring(bodyStartIndex).trim();
+
           if (shouldInclude) {
             activeParent.children.push({
               type: "element",
